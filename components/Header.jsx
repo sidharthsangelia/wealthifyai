@@ -1,13 +1,15 @@
+ 
 import React from "react";
 import { Button } from "./ui/button";
 import { PenBox, LayoutDashboard } from "lucide-react";
 import Link from "next/link";
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
-// import { checkUser } from "@/lib/checkUser";
+ 
 import Image from "next/image";
+import { checkUser } from "@/lib/checkUser";
 
 const Header = async () => {
-//   await checkUser();
+  await checkUser();
 
   return (
     <header className="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 border-b">
@@ -56,11 +58,6 @@ const Header = async () => {
               </Button>
             </a>
           </SignedIn>
-          <SignedOut>
-            <SignInButton forceRedirectUrl="/dashboard">
-              <Button variant="outline">Login</Button>
-            </SignInButton>
-          </SignedOut>
           <SignedIn>
             <UserButton
               appearance={{
@@ -70,6 +67,11 @@ const Header = async () => {
               }}
             />
           </SignedIn>
+              <SignedOut>
+                <SignInButton >
+                  <Button variant="outline">Login</Button>
+                </SignInButton>
+              </SignedOut>
         </div>
       </nav>
     </header>

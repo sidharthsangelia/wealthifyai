@@ -11,6 +11,7 @@ import {
  
 import Link from "next/link";
 import HeroSection from "@/components/Hero";
+ 
 
 const LandingPage = () => {
   return (
