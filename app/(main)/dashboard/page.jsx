@@ -1,18 +1,15 @@
 // app/dashboard/page.jsx
+import { getUserAccounts } from "@/actions/dashboard";
+import { accountSchema } from "@/app/lib/schema";
 import {CreateAccountDrawer} from "@/components/CreateAccountDrawer";
 import { Card, CardContent } from "@/components/ui/card";
-import { checkUser } from "@/lib/checkUser";
-import { auth, currentUser } from "@clerk/nextjs/server";
 import { Plus } from "lucide-react";
-import { redirect } from "next/navigation";
+import AccountCard from "./_components/AccountCard";
 
 export default async function DashboardPage() {
-  const { userId } = await auth();
 
-  if (!userId) {
-    redirect("/sign-in");
-  }
-
+  const account = await getUserAccounts()
+                           
   return (
     <main className="space-y-8">
       {/* Accounts Grid */}
@@ -26,6 +23,10 @@ export default async function DashboardPage() {
             </CardContent>
           </Card>
         </CreateAccountDrawer>
+
+        {account.length > 0 && account?.map((account) => {
+          return <AccountCard key={account.id} account={account}/>;
+        })}
       </div>
     </main>
   );
