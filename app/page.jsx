@@ -13,7 +13,7 @@ import Link from "next/link";
 import HeroSection from "@/components/Hero";
  
 
-const LandingPage = () => {
+const page = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
@@ -130,4 +130,4 @@ const LandingPage = () => {
   );
 };
 
-export default LandingPage;
+export default page;
